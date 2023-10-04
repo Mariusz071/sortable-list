@@ -1,0 +1,59 @@
+<script setup lang="ts">
+// imports
+import { useList } from '@/stores/list'
+////
+
+// list store
+const listStore = useList()
+////
+</script>
+<template lang="pug">
+div.px-1
+  h1.mb-4.text-h5.text-white.font-weight-bold Sortable Post List
+  transition-group(name="posts", tag="div")
+    v-card.mb-6.elevation-4.post(
+      v-for="(item, index) in listStore.sortedPosts"
+      :key="item.id"
+      transition="fade-transition"
+    )
+      v-card-text.d-flex.justify-space-between
+        div.text-body-1.text-gray.d-flex.align-center
+          span {{ `Post ${item.id}` }}
+        div.post__actions.d-flex.flex-column.justify-space-between
+          v-btn(
+            icon
+            color="secondary"
+            variant="plain"
+            @click="listStore.movePostAction({from: index, type: 'up'})"
+          )
+            v-icon(size='x-large') mdi-chevron-up
+          v-btn(
+            icon
+            color="secondary"
+            variant="plain"
+            @click="listStore.movePostAction({from: index, type: 'down'})"
+          )
+            v-icon(size='x-large') mdi-chevron-down
+
+
+</template>
+
+<style lang="scss" scoped>
+.posts-move, /* apply transition to moving elements */
+.posts-enter-active,
+.posts-leave-active {
+  transition: all 0.5s ease;
+}
+
+.posts-enter-from,
+.posts-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+/* ensure leaving items are taken out of layout flow so that moving
+   animations can be calculated correctly. */
+.posts-leave-active {
+  position: absolute;
+}
+</style>
