@@ -1,7 +1,8 @@
 import type { Post } from '@/api/types'
 
-export interface Action {
+export interface PostAction {
   from: number
   to: number
   snapshot: Post[]
+  postId: number
 }

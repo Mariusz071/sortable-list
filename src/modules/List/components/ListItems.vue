@@ -24,14 +24,14 @@ div.px-1
             icon
             color="secondary"
             variant="plain"
-            @click="listStore.movePostAction({from: index, type: 'up'})"
+            @click="listStore.movePostAction({from: index, type: 'up', postId: item.id})"
           )
             v-icon(size='x-large') mdi-chevron-up
           v-btn(
             icon
             color="secondary"
             variant="plain"
-            @click="listStore.movePostAction({from: index, type: 'down'})"
+            @click="listStore.movePostAction({from: index, type: 'down', postId: item.id})"
           )
             v-icon(size='x-large') mdi-chevron-down
 

@@ -8,12 +8,12 @@ import { VISIBLE_POSTS_NUMBER } from '@/common/consts'
 
 import type { Ref } from 'vue'
 import type { Post } from '@/api/types'
-import type { Action } from '@/modules/List/components/types'
+import type { PostAction } from '@/modules/List/components/types'
 import type { MovePostActionParams } from './types'
 
 export const useList = defineStore('list', () => {
   const posts: Ref<Post[]> = ref([])
-  const actions: Ref<Action[]> = ref([])
+  const postActions: Ref<PostAction[]> = ref([])
   const sortedPosts: Ref<Post[]> = ref([])
 
   // const visiblePosts = computed(() => {
@@ -40,16 +40,42 @@ export const useList = defineStore('list', () => {
     }
   }
 
-  const movePostAction = ({ type, from }: MovePostActionParams) => {
+  const movePostAction = ({ type, from, postId }: MovePostActionParams) => {
     const to = type === 'up' ? from - 1 : from + 1
+    const postAction = {
+      from,
+      to,
+      snapshot: [...sortedPosts.value],
+      postId
+    }
+
+    if (shouldAddPostAction(postAction)) {
+      postActions.value.push(postAction)
+    }
     sortedPosts.value = getSortedList({ to, from, items: sortedPosts.value })
+  }
+
+  const goToListSnapshotAction = (snapshot: Post[]) => {
+    sortedPosts.value = [...snapshot]
+  }
+
+  // checks if this action already exists, to avoid duplicates
+  const shouldAddPostAction = (postAction: PostAction) => {
+    const { to, from, postId } = postAction
+    const isActionExisting = !postActions.value.find((item) => {
+      return item.to === to && postId === item.postId && item.from === from
+    })
+
+    return isActionExisting
   }
 
   return {
     posts,
     // visiblePosts,
     sortedPosts,
+    postActions,
     getPostsAction,
-    movePostAction
+    movePostAction,
+    goToListSnapshotAction
   }
 })
