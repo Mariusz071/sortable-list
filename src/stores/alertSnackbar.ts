@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { Ref } from 'vue'
 
-export const useAlert = defineStore('alert', () => {
+export const useAlertSnackbar = defineStore('alert', () => {
   const alertText: Ref<string> = ref('')
   const alertType: Ref<'error' | 'success' | ''> = ref('')
   const isVisible: Ref<boolean> = ref(false)

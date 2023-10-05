@@ -3,14 +3,14 @@
 import { onBeforeMount, computed } from 'vue'
 import { useDisplay } from 'vuetify'
 
-import { useList } from '@/stores/list'
+import { useSortableList } from '@/stores/sortableList'
 
-import ListItems from './components/ListItems.vue'
-import ListActions from './components/ListActions.vue'
+import ListItems from './components/SortableListItems.vue'
+import ListActions from './components/SortableListActions.vue'
 ////
 
 // list store
-const listStore = useList()
+const listStore = useSortableList()
 ////
 
 // list layout

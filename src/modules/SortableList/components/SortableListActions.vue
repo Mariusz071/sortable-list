@@ -1,10 +1,10 @@
 <script setup lang="ts">
 // imports
-import { useList } from '@/stores/list'
+import { useSortableList } from '@/stores/sortableList'
 ////
 
 // list store
-const listStore = useList()
+const listStore = useSortableList()
 ////
 </script>
 <template lang="pug">
@@ -42,7 +42,6 @@ v-card.elevation-4
   transition: all 0.3s ease;
 }
 
-/* 2. declare enter from and leave to state */
 .actions-enter-from,
 .actions-leave-to {
   opacity: 0;

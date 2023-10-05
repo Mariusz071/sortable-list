@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import Alert from '@/components/Alert.vue'
+import AlertSnackbar from '@/components/AlertSnackbar.vue'
 import PageContainer from '@/components/PageContainer.vue'
-import List from '@/modules/List'
+import List from '@/modules/SortableList'
 </script>
 
 <template lang="pug">
 v-app
   v-layout
     v-main
-      Alert
+      AlertSnackbar
       PageContainer
         List
 </template>

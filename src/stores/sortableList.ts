@@ -1,25 +1,25 @@
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { v1 as uuidv1 } from 'uuid'
 
 import { getPosts } from '@/api/posts'
-import { useAlert } from '@/stores/alert'
+import { useAlertSnackbar } from '@/stores/alertSnackbar'
 import { getSortedList } from '@/common/utils'
 import { VISIBLE_POSTS_NUMBER } from '@/common/consts'
 
 import type { Ref } from 'vue'
 import type { Post } from '@/api/types'
-import type { PostAction } from '@/modules/List/components/types'
+import type { PostAction } from '@/modules/SortableList/components/types'
 import type { MovePostActionParams } from './types'
 
-export const useList = defineStore('list', () => {
+export const useSortableList = defineStore('list', () => {
   const posts: Ref<Post[]> = ref([])
   const postActions: Ref<PostAction[]> = ref([])
   const sortedPosts: Ref<Post[]> = ref([])
   const activeSnapshotId: Ref<string> = ref('')
 
   const getPostsAction = async () => {
-    const alertsStore = useAlert()
+    const alertsStore = useAlertSnackbar()
 
     try {
       const res = await getPosts()

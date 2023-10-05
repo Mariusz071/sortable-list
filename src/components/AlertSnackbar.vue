@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useAlert } from '@/stores/alert'
+import { useAlertSnackbar } from '@/stores/alertSnackbar'
 
 // store
-const alertsStore = useAlert()
+const alertsStore = useAlertSnackbar()
 ///
 
 // -1 value means alert will be visible until closed manually

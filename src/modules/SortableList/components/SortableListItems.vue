@@ -1,11 +1,11 @@
 <script setup lang="ts">
 // imports
-import { useList } from '@/stores/list'
+import { useSortableList } from '@/stores/sortableList'
 import { VISIBLE_POSTS_NUMBER } from '@/common/consts'
 ////
 
 // list store
-const listStore = useList()
+const listStore = useSortableList()
 ////
 </script>
 <template lang="pug">
