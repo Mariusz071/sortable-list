@@ -17,18 +17,14 @@ export const useList = defineStore('list', () => {
   const postActions: Ref<PostAction[]> = ref([])
   const sortedPosts: Ref<Post[]> = ref([])
 
-  // const visiblePosts = computed(() => {
-  //   return posts.value.length > VISIBLE_POSTS_NUMBER
-  //     ? [...posts.value].slice(0, VISIBLE_POSTS_NUMBER)
-  //     : posts.value
-  // })
-
   const getPostsAction = async () => {
     const alertsStore = useAlert()
 
     try {
       const res = await getPosts()
       posts.value = res.data
+
+      // if there is more than 5 posts, renders first 5
       sortedPosts.value =
         posts.value.length > VISIBLE_POSTS_NUMBER
           ? [...posts.value].slice(0, VISIBLE_POSTS_NUMBER)
