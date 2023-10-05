@@ -13,7 +13,9 @@ v-card.elevation-4
     h2.mb-4.text-h5.text-grey.font-weight-bold List of actions commited
   v-card-text
     v-card.elevation-3
-      v-table
+      v-card-text.text-center(v-if="!listStore.postActions.length")
+        span.text-body-1.text-gray There's no commited actions yet.
+      v-table(v-else)
         transition-group(
           name="actions"
           tag="tbody"
