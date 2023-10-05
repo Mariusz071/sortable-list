@@ -19,8 +19,8 @@ v-card.elevation-4
           tag="tbody"
         )
           tr(
-            v-for="item in listStore.postActions"
-            :key="item.postId"
+            v-for="(item) in listStore.postActions"
+            :key="item.id"
           )
             td
               div.d-flex.justify-space-between.align-center
@@ -33,13 +33,25 @@ v-card.elevation-4
 </template>
 
 <style lang="scss" scoped>
+.actions-move,
 .actions-enter-active,
 .actions-leave-active {
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
 }
+
+/* 2. declare enter from and leave to state */
 .actions-enter-from,
 .actions-leave-to {
   opacity: 0;
-  transform: translateX(30px);
+  transform: scaleY(0.01) translate(30px, 0);
+}
+
+.actions-leave-active {
+  position: absolute;
+}
+
+.actions-enter-to {
+  opacity: 0; /* Start with opacity 0 */
+  transform: translateY(-30px); /* Slide down from the top */
 }
 </style>

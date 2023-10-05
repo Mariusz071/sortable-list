@@ -1,5 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import { v1 as uuidv1 } from 'uuid'
 
 import { getPosts } from '@/api/posts'
 import { useAlert } from '@/stores/alert'
@@ -46,11 +47,12 @@ export const useList = defineStore('list', () => {
       from,
       to,
       snapshot: [...sortedPosts.value],
-      postId
+      postId,
+      id: uuidv1()
     }
 
     if (shouldAddPostAction(postAction)) {
-      postActions.value.push(postAction)
+      postActions.value.unshift(postAction)
     }
     sortedPosts.value = getSortedList({ to, from, items: sortedPosts.value })
   }

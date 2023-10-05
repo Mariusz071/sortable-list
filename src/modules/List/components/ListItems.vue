@@ -42,7 +42,7 @@ div.px-1
 .posts-move, /* apply transition to moving elements */
 .posts-enter-active,
 .posts-leave-active {
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
 }
 
 .posts-enter-from,
