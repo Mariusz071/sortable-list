@@ -5,4 +5,5 @@ export interface PostAction {
   to: number
   snapshot: Post[]
   postId: number
+  id: string
 }

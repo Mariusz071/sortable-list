@@ -16,6 +16,7 @@ export const useList = defineStore('list', () => {
   const posts: Ref<Post[]> = ref([])
   const postActions: Ref<PostAction[]> = ref([])
   const sortedPosts: Ref<Post[]> = ref([])
+  const activeSnapshotId: Ref<string> = ref('')
 
   const getPostsAction = async () => {
     const alertsStore = useAlert()
@@ -51,10 +52,15 @@ export const useList = defineStore('list', () => {
       postActions.value.unshift(postAction)
     }
     sortedPosts.value = getSortedList({ to, from, items: sortedPosts.value })
+    activeSnapshotId.value = ''
   }
 
-  const goToListSnapshotAction = (snapshot: Post[]) => {
-    sortedPosts.value = [...snapshot]
+  const goToListSnapshotAction = (action: PostAction) => {
+    sortedPosts.value = [...action.snapshot]
+
+    // activeSnapshotId is used to detect which action was last 'time travelled'
+    // and disabling 'time travel' button accordingly, displaying UI feedback to the user
+    activeSnapshotId.value = action.id
   }
 
   // checks if this action already exists, to avoid duplicates
@@ -69,11 +75,11 @@ export const useList = defineStore('list', () => {
 
   return {
     posts,
-    // visiblePosts,
     sortedPosts,
     postActions,
     getPostsAction,
     movePostAction,
-    goToListSnapshotAction
+    goToListSnapshotAction,
+    activeSnapshotId
   }
 })

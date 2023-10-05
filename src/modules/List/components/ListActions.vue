@@ -28,8 +28,9 @@ v-card.elevation-4
                 v-btn(
                   color="primary"
                   size="small"
-                  @click="listStore.goToListSnapshotAction(item.snapshot)"
-                ) Time travel
+                  :disabled="listStore.activeSnapshotId === item.id"
+                  @click="listStore.goToListSnapshotAction(item)"
+                ) {{ listStore.activeSnapshotId === item.id ? 'Snapshot applied' : 'Time travel' }}
 </template>
 
 <style lang="scss" scoped>
