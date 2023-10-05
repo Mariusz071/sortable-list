@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // imports
 import { useList } from '@/stores/list'
+import { VISIBLE_POSTS_NUMBER } from '@/common/consts'
 ////
 
 // list store
@@ -21,6 +22,7 @@ div.px-1
           span {{ `Post ${item.id}` }}
         div.post__actions.d-flex.flex-column.justify-space-between
           v-btn(
+            v-if='index !== 0'
             icon
             color="secondary"
             variant="plain"
@@ -28,6 +30,7 @@ div.px-1
           )
             v-icon(size='x-large') mdi-chevron-up
           v-btn(
+            v-if="index !== VISIBLE_POSTS_NUMBER - 1"
             icon
             color="secondary"
             variant="plain"
