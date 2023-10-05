@@ -12,28 +12,21 @@ const containerWidth = computed(() => {
     case 'sm':
       return '80%'
     case 'md':
-      return '60%'
+      return '70%'
     case 'lg':
-      return '60%'
+      return '70%'
     case 'xl':
-      return '60%'
+      return '70%'
     case 'xxl':
-      return '60%'
+      return '70%'
     default:
-      return '60%'
+      return '70%'
   }
 })
 </script>
 <template lang="pug">
-v-container(
+v-container.h-100(
   :style="{ maxWidth: containerWidth }"
 )
   slot
 </template>
-
-<style scoped>
-.v-container {
-  border: 2px solid red;
-  height: 100%;
-}
-</style>
