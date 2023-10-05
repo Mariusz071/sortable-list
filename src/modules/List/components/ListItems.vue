@@ -11,14 +11,18 @@ const listStore = useList()
 <template lang="pug">
 div.px-1
   h1.mb-4.text-h5.text-white.font-weight-bold Sortable Post List
-  transition-group(name="posts", tag="div")
+  transition-group(
+    name="posts"
+    tag="div"
+  )
     v-card.mb-6.elevation-4.post(
       v-for="(item, index) in listStore.sortedPosts"
+      height="100"
       :key="item.id"
       transition="fade-transition"
     )
-      v-card-text.d-flex.justify-space-between
-        div.text-body-1.text-gray.d-flex.align-center
+      v-card-text.py-0.d-flex.justify-space-between.align-center.h-100
+        div.text-body-1.text-gray.d-flex
           span {{ `Post ${item.id}` }}
         div.post__actions.d-flex.flex-column.justify-space-between
           v-btn(
