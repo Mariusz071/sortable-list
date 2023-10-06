@@ -18,10 +18,19 @@ const containerClasses = computed(() => {
 </script>
 
 <template lang="pug">
-div.d-flex(:class="{ 'flex-column': mdAndDown }")
-  div.col(:class="{ 'mr-12': lgAndUp, 'mb-6': mdAndDown }")
+div.d-flex(
+  test-id="sortable-list-wrapper"
+  :class="{ 'flex-column': mdAndDown }"
+)
+  div.col(
+    test-id="list-items-col"
+    :class="{ 'mr-12': lgAndUp, 'mb-6': mdAndDown }"
+  )
     ListItems
-  div.col(:class="{ 'ml-12': lgAndUp }")
+  div.col(
+    test-id="list-actions-col"
+    :class="{ 'ml-12': lgAndUp }"
+    )
     ListActions
 </template>
 

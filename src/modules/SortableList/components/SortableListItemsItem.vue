@@ -7,7 +7,7 @@ import { VISIBLE_POSTS_NUMBER } from '@/common/consts'
 // props
 const props = defineProps({
   post: {
-    type: Array,
+    type: Object,
     required: true
   },
   position: {
@@ -57,7 +57,7 @@ v-card.mb-6.elevation-4.post(
         v-icon(size='x-large') mdi-chevron-up
       v-btn(
         v-if="showDownBtn"
-        test-id="move-down-btn'"
+        test-id="move-down-btn"
         icon
         color="secondary"
         variant="plain"
