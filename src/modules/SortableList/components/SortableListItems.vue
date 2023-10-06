@@ -1,11 +1,18 @@
 <script setup lang="ts">
 // imports
+import { onBeforeMount } from 'vue'
 import { useSortableList } from '@/stores/sortableList'
 import { VISIBLE_POSTS_NUMBER } from '@/common/consts'
 ////
 
 // list store
 const listStore = useSortableList()
+////
+
+// fetching posts
+onBeforeMount(async () => {
+  await listStore.getPostsAction()
+})
 ////
 </script>
 <template lang="pug">

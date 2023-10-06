@@ -1,16 +1,10 @@
 <script setup lang="ts">
 // imports
-import { onBeforeMount, computed } from 'vue'
+import { computed } from 'vue'
 import { useDisplay } from 'vuetify'
-
-import { useSortableList } from '@/stores/sortableList'
 
 import ListItems from './components/SortableListItems.vue'
 import ListActions from './components/SortableListActions.vue'
-////
-
-// list store
-const listStore = useSortableList()
 ////
 
 // list layout
@@ -19,12 +13,6 @@ const containerClasses = computed(() => {
   return {
     'flex-column': mdAndDown.value
   }
-})
-////
-
-// fetching posts
-onBeforeMount(async () => {
-  await listStore.getPostsAction()
 })
 ////
 </script>
