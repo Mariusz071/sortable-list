@@ -1,6 +1,8 @@
 <script setup lang="ts">
 // imports
 import { onBeforeMount } from 'vue'
+
+import SortableListItemsItem from './SortableListItemsItem.vue'
 import { useSortableList } from '@/stores/sortableList'
 import { VISIBLE_POSTS_NUMBER } from '@/common/consts'
 ////
@@ -17,39 +19,17 @@ onBeforeMount(async () => {
 </script>
 <template lang="pug">
 div.px-1
-  h1.mb-4.text-h5.text-white.font-weight-bold Sortable Post List
+  h1.mb-4.text-h5.text-white.font-weight-bold(test-id="sortable-list-header") Sortable Post List
   transition-group(
     name="posts"
     tag="div"
   )
-    v-card.mb-6.elevation-4.post(
-      v-for="(item, index) in listStore.sortedPosts"
-      height="100"
-      :key="item.id"
-      transition="fade-transition"
+    SortableListItemsItem(
+      v-for="(post, index) in listStore.sortedPosts"
+      v-bind="{ post, index }"
+      :key="post.id"
+      @move-post="listStore.movePostAction"
     )
-      v-card-text.py-0.d-flex.justify-space-between.align-center.h-100
-        div.text-body-1.text-gray.d-flex
-          span {{ `Post ${item.id}` }}
-        div.post__actions.d-flex.flex-column.justify-space-between
-          v-btn(
-            v-if='index !== 0'
-            icon
-            color="secondary"
-            variant="plain"
-            @click="listStore.movePostAction({from: index, type: 'up', postId: item.id})"
-          )
-            v-icon(size='x-large') mdi-chevron-up
-          v-btn(
-            v-if="index !== VISIBLE_POSTS_NUMBER - 1"
-            icon
-            color="secondary"
-            variant="plain"
-            @click="listStore.movePostAction({from: index, type: 'down', postId: item.id})"
-          )
-            v-icon(size='x-large') mdi-chevron-down
-
-
 </template>
 
 <style lang="scss" scoped>
