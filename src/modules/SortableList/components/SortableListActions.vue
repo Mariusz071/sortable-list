@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // imports
 import { useSortableList } from '@/stores/sortableList'
+import SortableListActionsAction from './SortableListActionsAction.vue'
 ////
 
 // list store
@@ -20,19 +21,14 @@ v-card.elevation-4
           name="actions"
           tag="tbody"
         )
-          tr(
-            v-for="(item) in listStore.postActions"
-            :key="item.id"
+          SortableListActionsAction(
+            v-for="(action) in listStore.postActions"
+            :key="action.id"
+            v-bind="{ action }"
+            :active-snapshot-id="listStore.activeSnapshotId"
+            :disabled="listStore.activeSnapshotId === action.id"
+            @time-travel="listStore.goToListSnapshotAction(action)"
           )
-            td
-              div.d-flex.justify-space-between.align-center
-                span {{ `Moved post ${item.postId} from index ${item.from} to index ${item.to}` }}
-                v-btn(
-                  color="primary"
-                  size="small"
-                  :disabled="listStore.activeSnapshotId === item.id"
-                  @click="listStore.goToListSnapshotAction(item)"
-                ) {{ listStore.activeSnapshotId === item.id ? 'Snapshot applied' : 'Time travel' }}
 </template>
 
 <style lang="scss" scoped>
