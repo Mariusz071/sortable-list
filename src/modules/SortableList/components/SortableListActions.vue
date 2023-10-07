@@ -18,7 +18,7 @@ v-card.elevation-4
         v-if="!listStore.postActions.length"
         test-id="no-actions-placeholder"
       )
-        span.text-body-1.text-gray There's no commited actions yet.
+        span.text-body-1.text-gray There's no commited actions.
       v-table(v-else)
         transition-group(
           name="actions"

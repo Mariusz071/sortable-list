@@ -150,13 +150,38 @@ describe('sortableList store', () => {
   it('goToListSnapshotAction fires correct logic', async () => {
     await store.getPostsAction()
 
+    store.postActions = [
+      {
+        id: 1,
+        snapshot: ['a', 'b', 'c']
+      },
+      {
+        id: 2,
+        snapshot: ['a', 'b', 'c']
+      },
+      {
+        id: 3,
+        snapshot: ['a', 'b', 'c']
+      },
+      {
+        id: 4,
+        snapshot: ['a', 'b', 'c']
+      }
+    ]
+
     const mockAction = {
-      id: 1,
+      id: 3,
       snapshot: ['a', 'b', 'c']
     }
 
     store.goToListSnapshotAction(mockAction)
     expect(store.sortedPosts).toStrictEqual(mockAction.snapshot)
-    expect(store.activeSnapshotId).toStrictEqual(mockAction.id)
+
+    expect(store.postActions).toStrictEqual([
+      {
+        id: 4,
+        snapshot: ['a', 'b', 'c']
+      }
+    ])
   })
 })

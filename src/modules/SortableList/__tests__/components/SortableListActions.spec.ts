@@ -33,7 +33,7 @@ describe('SortableListActions', () => {
 
       const placeholder = wrapper.find('[test-id="no-actions-placeholder"]')
       expect(placeholder.exists()).toBe(true)
-      const expectedText = "There's no commited actions yet."
+      const expectedText = "There's no commited actions."
       expect(placeholder.text()).toBe(expectedText)
     })
 

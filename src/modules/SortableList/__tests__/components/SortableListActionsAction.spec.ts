@@ -12,37 +12,21 @@ describe('SortableListActionsAction', () => {
       plugins: [vuetify]
     },
     propsData: {
-      action,
-      isActionActive: false
+      action
     }
   })
 
-  describe('renders correctly', () => {
-    it('WHEN action is inactive', () => {
-      const expectedText = `Moved post ${action.postId} from index ${action.from} to index ${action.to}`
-      expect(wrapper.find('[test-id="action-text"]').text()).toBe(expectedText)
+  it('renders correctly', async () => {
+    await wrapper.vm.$nextTick()
 
-      expect(wrapper.find('[test-id="time-travel-btn"][disabled]').exists()).toBe(false)
-      const activeTimeTravelBtn = wrapper.find('[test-id="time-travel-btn"]')
-      expect(activeTimeTravelBtn.exists()).toBe(true)
+    const expectedText = `Moved post ${action.postId} from index ${action.from} to index ${action.to}`
+    expect(wrapper.find('[test-id="action-text"]').text()).toBe(expectedText)
 
-      const expectedBtnText = 'Time travel'
-      expect(activeTimeTravelBtn.text()).toBe(expectedBtnText)
-    })
+    const timeTravelBtn = wrapper.find('[test-id="time-travel-btn"]')
+    expect(timeTravelBtn.exists()).toBe(true)
 
-    it('WHEN action active', async () => {
-      await wrapper.setProps({ isActionActive: true })
-      await wrapper.vm.$nextTick()
-
-      const expectedText = `Moved post ${action.postId} from index ${action.from} to index ${action.to}`
-      expect(wrapper.find('[test-id="action-text"]').text()).toBe(expectedText)
-
-      const disabledTimeTravelBtn = wrapper.find('[test-id="time-travel-btn"][disabled]')
-      expect(disabledTimeTravelBtn.exists()).toBe(true)
-
-      const expectedBtnText = 'Snapshot applied'
-      expect(disabledTimeTravelBtn.text()).toBe(expectedBtnText)
-    })
+    const expectedBtnText = 'Time travel'
+    expect(timeTravelBtn.text()).toBe(expectedBtnText)
   })
 
   it('WHEN clicking "Time travel" correct logic is being fired', async () => {

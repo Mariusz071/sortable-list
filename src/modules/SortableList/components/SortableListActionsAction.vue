@@ -7,10 +7,6 @@ const props = defineProps({
   action: {
     type: Object,
     required: true
-  },
-  isActionActive: {
-    type: Boolean,
-    required: true
   }
 })
 ////
@@ -31,5 +27,5 @@ tr
         size="small"
         :disabled="props.isActionActive"
         @click="emit('time-travel', props.action)"
-      ) {{ props.isActionActive ? 'Snapshot applied' : 'Time travel' }}
+      ) Time travel
 </template>

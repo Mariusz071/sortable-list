@@ -58,9 +58,14 @@ export const useSortableList = defineStore('list', () => {
   const goToListSnapshotAction = (action: PostAction) => {
     sortedPosts.value = [...action.snapshot]
 
-    // activeSnapshotId is used to detect which action was last 'time travelled'
-    // and disabling 'time travel' button accordingly, displaying UI feedback to the user
-    activeSnapshotId.value = action.id
+    // for some reason Vitest didn't like below approach
+    // it wasn't finding action within postActions but it's there 100%
+    // my hunch is that it has something to do with object referencing
+    // const indexOfActiveAction = postActions.value.indexOf(action)
+
+    const foundAction = postActions.value.find((item) => item.id === action.id) as PostAction
+    const indexOfActiveAction = postActions.value.indexOf(foundAction)
+    postActions.value.splice(0, indexOfActiveAction + 1)
   }
 
   // checks if this action already exists, to avoid duplicates
