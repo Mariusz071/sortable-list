@@ -28,9 +28,8 @@ v-card.elevation-4
             v-for="(action) in listStore.postActions"
             :key="action.id"
             v-bind="{ action }"
-            :active-snapshot-id="listStore.activeSnapshotId"
-            :disabled="listStore.activeSnapshotId === action.id"
-            @time-travel="listStore.goToListSnapshotAction(action)"
+            :is-action-active="listStore.activeSnapshotId === action.id"
+            @time-travel="listStore.goToListSnapshotAction"
           )
 </template>
 

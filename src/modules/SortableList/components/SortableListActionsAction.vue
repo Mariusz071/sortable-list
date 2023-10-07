@@ -1,16 +1,15 @@
 <script setup lang="ts">
+// imports
+import { computed } from 'vue'
+////
 // props
 const props = defineProps({
   action: {
     type: Object,
     required: true
   },
-  disabled: {
+  isActionActive: {
     type: Boolean,
-    required: true
-  },
-  activeSnapshotId: {
-    type: String,
     required: true
   }
 })
@@ -25,11 +24,12 @@ const emit = defineEmits(['time-travel'])
 tr
   td
     div.d-flex.justify-space-between.align-center
-      span {{ `Moved post ${props.action.postId} from index ${props.action.from} to index ${props.action.to}` }}
+      span(test-id="action-text") {{ `Moved post ${props.action.postId} from index ${props.action.from} to index ${props.action.to}` }}
       v-btn(
+        test-id="time-travel-btn"
         color="primary"
         size="small"
-        v-bind="{ disabled }"
-        @click="emit('time-travel')"
-      ) {{ props.activeSnapshotId === props.action.id ? 'Snapshot applied' : 'Time travel' }}
+        :disabled="props.isActionActive"
+        @click="emit('time-travel', props.action)"
+      ) {{ props.isActionActive ? 'Snapshot applied' : 'Time travel' }}
 </template>
