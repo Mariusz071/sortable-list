@@ -1,7 +1,8 @@
 <script setup lang="ts">
 // imports
-import { onBeforeMount } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 
+import SortableListItemsLoader from './SortableListItemsLoader.vue'
 import SortableListItemsItem from './SortableListItemsItem.vue'
 import { useSortableList } from '@/stores/sortableList'
 import { VISIBLE_POSTS_NUMBER } from '@/common/consts'
@@ -12,15 +13,19 @@ const listStore = useSortableList()
 ////
 
 // fetching posts
+const isLoading: Ref<boolean> = ref(true)
 onBeforeMount(async () => {
   await listStore.getPostsAction()
+  isLoading.value = false
 })
 ////
 </script>
 <template lang="pug">
 div.px-1
   h1.mb-4.text-h5.text-white.font-weight-bold(test-id="sortable-list-header") Sortable Post List
+  SortableListItemsLoader(v-if="isLoading")
   transition-group(
+    v-else
     name="posts"
     tag="div"
   )

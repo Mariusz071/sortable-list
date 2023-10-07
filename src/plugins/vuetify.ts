@@ -2,11 +2,12 @@ import 'vuetify/styles'
 import '@mdi/font/css/materialdesignicons.css'
 
 import { createVuetify } from 'vuetify'
+import { VSkeletonLoader } from 'vuetify/labs/VSkeletonLoader'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
 export const vuetify = createVuetify({
-  components,
+  components: { ...components, VSkeletonLoader },
   directives,
   theme: {
     themes: {
