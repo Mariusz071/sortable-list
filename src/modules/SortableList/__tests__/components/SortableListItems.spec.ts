@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { createTestingPinia } from '@pinia/testing'
 import { vuetify } from '@/plugins/vuetify'
-import { shallowMount } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import * as postsApi from '@/api/posts'
 
 import { VISIBLE_POSTS_NUMBER } from '@/common/consts'
@@ -21,7 +21,7 @@ describe('SortableList', () => {
   })
 
   beforeEach(() => {
-    wrapper = shallowMount(SortableListItems, {
+    wrapper = mount(SortableListItems, {
       global: {
         plugins: [
           createTestingPinia({
@@ -41,7 +41,15 @@ describe('SortableList', () => {
   })
 
   describe('renders correctly', () => {
+    it('WHEN component is loading, loader is visible', async () => {
+      wrapper.vm.isLoading = true
+      await wrapper.vm.$nextTick()
+      expect(wrapper.find('[test-id="list-items-loader"]').exists()).toBe(true)
+      expect(wrapper.findComponent({ name: 'SortableListItemsItem' }).exists()).toBe(false)
+    })
     it(`WHEN more than ${VISIBLE_POSTS_NUMBER} posts are fetched`, async () => {
+      wrapper.vm.isLoading = false
+      await wrapper.vm.$nextTick()
       expect(wrapper.find('[test-id="sortable-list-header"]').exists()).toBe(true)
       const posts = wrapper.findAllComponents({ name: 'SortableListItemsItem' })
       expect(posts.length).toBe(VISIBLE_POSTS_NUMBER)
