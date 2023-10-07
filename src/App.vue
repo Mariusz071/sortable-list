@@ -18,7 +18,7 @@ v-app
   background: var(--v-theme-surface);
   background: linear-gradient(
     355deg,
-    rgba(var(--v-theme-surface), 1) 89%,
+    rgba(var(--v-theme-dimmed), 1) 89%,
     rgba(var(--v-theme-secondary), 1) 90%
   );
 }

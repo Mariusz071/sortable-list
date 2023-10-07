@@ -21,8 +21,8 @@ export const vuetify = createVuetify({
           success: '#4CAF50',
           warning: '#FFC107',
           disabled: '#BBBBBB',
-          grey: '#4B4B4B'
-          // dimmed: '#F6F6F6'
+          grey: '#4B4B4B',
+          dimmed: '#F6F6F6'
         }
       }
     }

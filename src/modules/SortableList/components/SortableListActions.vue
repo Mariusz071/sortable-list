@@ -12,7 +12,7 @@ const listStore = useSortableList()
 v-card.elevation-4
   v-card-title
     h2.mb-4.text-h5.text-grey.font-weight-bold List of actions commited
-  v-card-text
+  v-card-text.actions-body
     v-card.elevation-3
       v-card-text.text-center(
         v-if="!listStore.postActions.length"
@@ -53,5 +53,9 @@ v-card.elevation-4
 .actions-enter-to {
   opacity: 0; /* Start with opacity 0 */
   transform: translateY(-30px); /* Slide down from the top */
+}
+
+.actions-body {
+  background: var(--v-theme-secondary);
 }
 </style>
