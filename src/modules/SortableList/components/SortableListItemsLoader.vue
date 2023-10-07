@@ -1,6 +1,8 @@
 <script setup lang="ts">
+// imports
 import { VISIBLE_POSTS_NUMBER } from '@/common/consts'
 import { VSkeletonLoader } from 'vuetify/labs/VSkeletonLoader'
+////
 </script>
 
 <template lang="pug">

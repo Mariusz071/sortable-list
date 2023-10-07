@@ -1,4 +1,3 @@
-import type { Post } from '@/api/types'
 import type { MoveListItemParams } from './types'
 
 export const getSortedList = ({ to, from, items }: MoveListItemParams) => {
