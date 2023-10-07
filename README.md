@@ -1,5 +1,24 @@
 # sortable-list
 
+## Tech stack
+
+- Vue 3
+- TypeScript
+- Vuetify
+- Pinia
+- Vitest
+
+## What I did extra
+
+- not allowing duplicate actions to appear
+- handling API call failure in the UI
+- mobile friendly UI
+
+## What could be done further
+
+- drag'n'drop implemented with [Vue Draggable](https://github.com/SortableJS/vue.draggable.next)
+- I was actually thinking about adding some way of preserving actions, even after refreshing but - it actually made no sense. For example if I would preserve actions in local storage, then let's say some posts would be deleted from the server and after getting those preserved action the `Time travel` would cause problems as some posts from saved snapshot could not exist anymore but as I write it I'm thinking that I could filter out not existent post related actions before displaying those actions from local storage :)
+
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
@@ -15,10 +34,6 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
    2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
 2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
 ## Project Setup
 
 ```sh
@@ -31,14 +46,14 @@ npm install
 npm run dev
 ```
 
+### Running unit tests
+
+```sh
+npm run test:unit
+```
+
 ### Type-Check, Compile and Minify for Production
 
 ```sh
 npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```
