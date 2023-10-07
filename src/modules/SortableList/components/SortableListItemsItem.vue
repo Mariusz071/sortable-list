@@ -44,7 +44,7 @@ v-card.mb-6.elevation-4.post(
 )
   v-card-text.py-0.d-flex.justify-space-between.align-center.h-100
     div.text-body-1.text-gray.d-flex
-      span {{ `Post ${props.post.id}` }}
+      span(test-id="post-text") {{ `Post ${props.post.id}` }}
     div.post__actions.d-flex.flex-column.justify-space-between
       v-btn(
         v-if="showUpBtn"

@@ -18,6 +18,8 @@ describe('SortableListItemsItem', () => {
 
   describe('renders correctly', () => {
     it('WHEN at index 0', () => {
+      const expectedText = `Post ${wrapper.vm.post.id}`
+      expect(wrapper.find('[test-id="post-text"]').text()).toBe(expectedText)
       expect(wrapper.findComponent({ name: 'VCard' }).exists()).toBe(true)
       expect(wrapper.findComponent({ name: 'VCardText' }).exists()).toBe(true)
       expect(wrapper.find('[test-id="move-up-btn"]').exists()).toBe(false)
@@ -28,6 +30,8 @@ describe('SortableListItemsItem', () => {
       wrapper.setProps({ index: 2 })
       await wrapper.vm.$nextTick()
 
+      const expectedText = `Post ${wrapper.vm.post.id}`
+      expect(wrapper.find('[test-id="post-text"]').text()).toBe(expectedText)
       expect(wrapper.findComponent({ name: 'VCard' }).exists()).toBe(true)
       expect(wrapper.findComponent({ name: 'VCardText' }).exists()).toBe(true)
       expect(wrapper.find('[test-id="move-up-btn"]').exists()).toBe(true)
@@ -38,6 +42,8 @@ describe('SortableListItemsItem', () => {
       wrapper.setProps({ index: 4 })
       await wrapper.vm.$nextTick()
 
+      const expectedText = `Post ${wrapper.vm.post.id}`
+      expect(wrapper.find('[test-id="post-text"]').text()).toBe(expectedText)
       expect(wrapper.findComponent({ name: 'VCard' }).exists()).toBe(true)
       expect(wrapper.findComponent({ name: 'VCardText' }).exists()).toBe(true)
       expect(wrapper.find('[test-id="move-up-btn"]').exists()).toBe(true)
